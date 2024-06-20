@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
-export default function VhnCategoryform({onCloseForm}) {
-
+export default function VhnCategoryform({onCloseForm,  renderVhncategory}) {
+    const [vhnId,setVhnId] = useState("");
+    useEffect(() =>{
+        setVhnId(renderVhncategory.vhnId);
+    });
     const vhnHandleClose = () => {
       onCloseForm(false);
     }

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function VhnCategorylist({renderVhnCategories, onAddNew}) {
+export default function VhnCategorylist({renderVhnCategories, onAddNew, onVhnEdit}) {
     console.log("renderVhnCategories: ",  renderVhnCategories);
 
     let vhnCategoryElement = renderVhnCategories.map((vhnCategory,index) => {
@@ -10,12 +10,31 @@ export default function VhnCategorylist({renderVhnCategories, onAddNew}) {
                 <td>{vhnCategory.vhnId}</td>
                 <td>{vhnCategory.vhnCategoryName}</td>
                 <td>{vhnCategory.vhnCategoryStatus===true?"Hiển thị":"Tạm Khóa"}</td>
+                <td>
+                    <button className='btn btn-danger' onClick={()=>vhnHandleDelete(vhnCategory.vhnId)}>Delete</button>
+                </td>
+                <td>
+                    <button className='btn btn-cuccess' onClick={()=>vhnHandleEdit(vhnCategory)}>Edit</button>
+                </td>
             </tr>
         )
     })
 
     const vhnHandleAdd = () =>{
         onAddNew(true);
+    }
+    const vhnHandleDelete = (vhnId) =>{
+        
+        if(window.confirm('Bạn có thật sự muốn xóa Category có mã['+vhnId+']khong?')){
+            console.log("Delete:", vhnId);
+        }else{
+
+        }
+       // onVhnDelete(true);
+    }
+    //su kien cho nut sua
+    const vhnHandleEdit = (vhnCategory) =>{
+        onVhnEdit(vhnCategory);
     }
     return (
         <div className='container m-2'>
